@@ -1,4 +1,4 @@
-ext{
+ext {
     android = [
             compileSdkVersion       : 25,
             buildToolsVersion       : "25.0.2",
@@ -7,13 +7,43 @@ ext{
             versionCode             : 24,
             versionName             : "1.2.4",
             androidSupportSdkVersion: "25.1.1",
-            retrofitSdkVersion      : "2.1.0",
-            dagger2SdkVersion       : "2.8",
-            rxlifecycleSdkVersion   : "1.0",
-            espressoSdkVersion      : "2.2.2"
+            multidexVersion         : "1.0.1",
+            smoothBarVersion        : "25.1.0.1",
+            systembartintVersion    : "1.0.3",
+            rxjavaVersion           : "1.1.7",
+            rxandroidVersion        : "1.2.1",
+            retrofitVersion         : "2.1.0",
+            adapterRxjavaVersion    : "2.1.0",
+            converterJacksonVersion : "2.1.0",
+            picassoVersion          : "2.5.2",
+            eventbusVersion         : "3.0.0",
+            daggerVersion           : "2.8",
+            butterknifeVersion      : "8.5.1",
+            timberVersion           : "4.5.1",
+            constraintLayoutVersion : "1.0.0",
+            vlayoutVersion          : "1.0.1@aar"
     ]
 
     dependencies = [
-
+            "multidex"             : "com.android.support:multidex:${android["multidexVersion"]}",
+            "appcompat-v7"         : "com.android.support:appcompat-v7:${android["androidSupportSdkVersion"]}",
+            "design"               : "com.android.support:design:${android["androidSupportSdkVersion"]}",
+            "cardview-v7"          : "com.android.support:cardview-v7:${android["androidSupportSdkVersion"]}",
+            "smooth-app-bar-layout": "me.henrytao:smooth-app-bar-layout:${android["smoothBarVersion"]}",
+            "systembartint"        : "com.readystatesoftware.systembartint:systembartint:${android["systembartintVersion"]}",
+            "rxjava"               : "io.reactivex:rxjava:${android["rxjavaVersion"]}",
+            "rxandroid"            : "io.reactivex:rxandroid:${android["rxandroidVersion"]}",
+            "retrofit"             : "com.squareup.retrofit2:retrofit:${android["retrofitVersion"]}",
+            "adapter-rxjava"       : "com.squareup.retrofit2:adapter-rxjava:${android["adapterRxjavaVersion"]}",
+            "converter-jackson"    : "com.squareup.retrofit2:converter-jackson:${android["converterJacksonVersion"]}",
+            "picasso"              : "com.squareup.picasso:picasso:${android["picassoVersion"]}",
+            "eventbus"             : "org.greenrobot:eventbus:${android["eventbusVersion"]}",
+            "dagger"               : "com.google.dagger:dagger:${android["daggerVersion"]}",
+            "butterknife"          : "com.jakewharton:butterknife:${android["butterknifeVersion"]}",
+            "timber"               : "com.jakewharton.timber:timber:${android["timberVersion"]}",
+            "constraint-layout"    : "com.android.support.constraint:constraint-layout:${android["constraintLayoutVersion"]}",
+            "dagger-compiler"      : "com.google.dagger:dagger-compiler:${android["daggerVersion"]}",
+            "butterknife-compiler" : "com.jakewharton:butterknife-compiler:${android["butterknifeVersion"]}",
+            "vlayout"              : "com.alibaba.android:vlayout:${android["vlayoutVersion"]}"
     ]
 }
