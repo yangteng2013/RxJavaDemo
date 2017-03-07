@@ -42,31 +42,21 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity android:name=".DragHelperActivity"/>
         <activity
             android:name=".BarActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait"/>
         <activity android:name=".ClipActivity"/>
-
         <activity android:name=".ViewPagerActivity"/>
-
         <activity android:name=".SmoothBarActivity"/>
-
         <activity android:name=".SecondActivity"/>
-
         <activity android:name=".EventBusActivity"/>
-
         <activity android:name=".GridViewActivity"/>
-
         <activity android:name=".RecyclerActivity"/>
-
         <activity android:name=".StaggeredGridActivity"/>
-
         <activity android:name=".DaggerActivity"/>
-
         <activity android:name=".VLayoutActivity"/>
+        <activity android:name=".ConstraintLayoutActivity"/>
 
         <service
             android:name="com.baidu.location.f"
@@ -77,9 +67,12 @@
                 </action>
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="vFdNzRQ4O8Pygjx1ce5CY5jTmWpnTPr1"/>
+
+
     </application>
 
 </manifest>
