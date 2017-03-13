@@ -3,6 +3,7 @@ package com.noe.rxjava.base;
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
+import android.util.DisplayMetrics;
 
 import com.noe.rxjava.BuildConfig;
 import com.noe.rxjava.data.LocationService;
@@ -17,6 +18,8 @@ public class RxApplication extends Application {
 
     public LocationService locationService;
 
+    private static RxApplication instance;
+
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -27,11 +30,21 @@ public class RxApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         locationService = new LocationService(getApplicationContext());
 
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+    }
+
+    public static RxApplication getInstance() {
+        return instance;
+    }
+
+    public static int getWidth(){
+        DisplayMetrics displayMetrics = instance.getApplicationContext().getResources().getDisplayMetrics();
+        return displayMetrics.widthPixels;
     }
 
 }

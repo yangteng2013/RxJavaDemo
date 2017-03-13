@@ -47,6 +47,12 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView = (RecyclerView) findViewById(R.id.r_recyclerView);
         layoutManager = new LinearLayoutManager(mContext);
         gridLayoutManager = new GridLayoutManager(mContext, 3);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return position == 0 ? 2 : 1;
+            }
+        });
         staggerStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 //        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 //        gridLayoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
