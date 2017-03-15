@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,85 +13,109 @@
             android:id="@+id/btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="event bus 3.0"/>
+            android:text="event bus 3.0" />
 
         <Button
             android:id="@+id/btn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="定位"/>
+            android:text="定位" />
 
         <Button
             android:id="@+id/btn3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GRIDVIEW"/>
+            android:text="GRIDVIEW" />
 
         <Button
             android:id="@+id/btn4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VIEWPAGER"/>
+            android:text="VIEWPAGER" />
 
         <Button
             android:id="@+id/btn5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SMOOTHBAR"/>
+            android:text="SMOOTHBAR" />
 
         <Button
             android:id="@+id/btn6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RECYCLER"/>
+            android:text="RECYCLER" />
 
         <Button
             android:id="@+id/btn7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="STAGGEREDGRID"/>
+            android:text="STAGGEREDGRID" />
 
         <Button
             android:id="@+id/btn8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GANJI"/>
+            android:text="GANJI" />
 
         <Button
             android:id="@+id/btn9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TESTSKIP"/>
+            android:text="TESTSKIP" />
 
         <Button
             android:id="@+id/btn10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DAGGER"/>
+            android:text="DAGGER" />
 
         <Button
             android:id="@+id/btn11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CAMERA"/>
+            android:text="CAMERA" />
 
         <Button
             android:id="@+id/btn12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ROOTPROJECT"/>
+            android:text="ROOTPROJECT" />
 
         <Button
             android:id="@+id/btn13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="vLayout"/>
+            android:text="vLayout" />
 
         <Button
             android:id="@+id/btn14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ConstraintLayout"/>
+            android:text="ConstraintLayout" />
+
+        <Button
+            android:id="@+id/btn15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="button_gradient" />
+
+        <Button
+            android:id="@+id/btn16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn16" />
+
+        <Button
+            android:id="@+id/btn17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn17" />
+
+        <Button
+            android:id="@+id/btn18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn18" />
 
     </LinearLayout>
 </ScrollView>
