@@ -50,16 +50,9 @@
 
             <gradient
                 android:angle="0"
-                android:centerX="0.7"
-                android:centerY="0"
-                android:startColor="#ff8f00"
-                android:endColor="#ff5100"
-                android:type="linear" />
-            <padding
-                android:left="6dp"
-                android:top="6dp"
-                android:right="6dp"
-                android:bottom="6dp" />
+                android:startColor="#ffff9000"
+                android:endColor="#ffff5000" />
+
         </shape>
     </item>
 </selector>

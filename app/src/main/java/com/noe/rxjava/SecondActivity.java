@@ -36,6 +36,10 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     private Button btn12;
     private Button btn13;
     private Button btn14;
+    private Button btn15;
+    private Button btn16;
+    private Button btn17;
+    private Button btn18;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +60,10 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         btn12 = (Button) findViewById(R.id.btn12);
         btn13 = (Button) findViewById(R.id.btn13);
         btn14 = (Button) findViewById(R.id.btn14);
+        btn15 = (Button) findViewById(R.id.btn15);
+        btn16 = (Button) findViewById(R.id.btn16);
+        btn17 = (Button) findViewById(R.id.btn17);
+        btn18 = (Button) findViewById(R.id.btn18);
 
 
         btn1.setOnClickListener(this);
@@ -72,6 +80,10 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         btn12.setOnClickListener(this);
         btn13.setOnClickListener(this);
         btn14.setOnClickListener(this);
+        btn15.setOnClickListener(this);
+        btn16.setOnClickListener(this);
+        btn17.setOnClickListener(this);
+        btn18.setOnClickListener(this);
     }
 
     @Override
@@ -139,6 +151,15 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn14:
                 startActivity(new Intent(SecondActivity.this, ConstraintLayoutActivity.class));
+                break;
+            case R.id.btn15:
+                startActivity(new Intent(SecondActivity.this, GradientActivity.class));
+                break;
+            case R.id.btn16:
+                break;
+            case R.id.btn17:
+                break;
+            case R.id.btn18:
                 break;
             default:
                 break;
