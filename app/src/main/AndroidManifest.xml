@@ -72,8 +72,7 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="vFdNzRQ4O8Pygjx1ce5CY5jTmWpnTPr1"/>
 
-        <activity android:name=".TouchEventActivity">
-        </activity>
+
     </application>
 
 </manifest>
