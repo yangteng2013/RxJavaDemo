@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
+            <corners android:radius="200dp"/>
+
             <gradient
                 android:angle="0"
                 android:endColor="#ffffa000"
@@ -11,6 +13,8 @@
     </item>
     <item android:state_focused="true">
         <shape>
+            <corners android:radius="200dp"/>
+
             <gradient
                 android:angle="0"
                 android:endColor="#ffffa000"
@@ -19,6 +23,8 @@
     </item>
     <item>
         <shape>
+            <corners android:radius="200dp"/>
+
             <gradient
                 android:angle="0"
                 android:endColor="#ffff5000"

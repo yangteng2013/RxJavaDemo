@@ -2,9 +2,11 @@ package com.noe.rxjava;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,7 @@ import com.noe.rxjava.bean.HotWordBean;
 import com.noe.rxjava.bean.TopicListBean;
 import com.noe.rxjava.data.ApiService;
 import com.noe.rxjava.data.RetroFactory;
+import com.noe.rxjava.util.ScrimUtil;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
@@ -87,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DragHelperActivity.class)));
         buttonBar = (Button) findViewById(R.id.buttonBar);
         btnSecond = (Button) findViewById(R.id.buttonSecond);
+        if(Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN){
+            btnSecond.setBackground(ScrimUtil.makeCubicGradientScrimDrawable(getResources().getColor(R.color.colorPrimary), //颜色
+                    8, //渐变层数
+                    Gravity.BOTTOM));
+        }
+
         buttonBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
