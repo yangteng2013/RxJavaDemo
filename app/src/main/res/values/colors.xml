@@ -12,4 +12,13 @@
     <color name="item_default_color">#22EEEEEE</color>
     <color name="item_pressed_color">#CCCCCC</color>
     <color name="item_activated_color">#77CEEE</color>
+
+
+
+    <color name="light_green_500">#8BC34A</color>
+    <color name="amber_500">#FBB106</color>
+    <color name="red_400">#D05660</color>
+    <color name="blue_500">#5979FB</color>
+
+
 </resources>
