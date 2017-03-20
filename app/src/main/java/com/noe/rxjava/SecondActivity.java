@@ -156,8 +156,10 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(new Intent(SecondActivity.this, GradientActivity.class));
                 break;
             case R.id.btn16:
+                startActivity(new Intent(SecondActivity.this, IntroActivity.class));
                 break;
             case R.id.btn17:
+                startActivity(new Intent(SecondActivity.this, Intro2Activity.class));
                 break;
             case R.id.btn18:
                 break;
