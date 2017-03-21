@@ -12,6 +12,12 @@
         android:gravity="center"
         android:text="change"/>
 
+    <View
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/bg_oval"
+        android:layout_width="10dp"
+        android:layout_height="10dp"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/r_recyclerView"
         android:layout_width="match_parent"
