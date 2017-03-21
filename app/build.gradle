@@ -69,6 +69,7 @@ dependencies {
     compile rootProject.ext.dependencies["adapter-rxjava"]
     compile rootProject.ext.dependencies["converter-jackson"]
     compile rootProject.ext.dependencies["picasso"]
+    compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["eventbus"]
     compile rootProject.ext.dependencies["dagger"]
     compile rootProject.ext.dependencies["butterknife"]
@@ -76,4 +77,5 @@ dependencies {
     compile rootProject.ext.dependencies["constraint-layout"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    compile 'com.android.support.constraint:constraint-layout:1.0.0'
 }
