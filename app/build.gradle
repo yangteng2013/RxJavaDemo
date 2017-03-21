@@ -70,6 +70,7 @@ dependencies {
     compile rootProject.ext.dependencies["converter-jackson"]
     compile rootProject.ext.dependencies["picasso"]
     compile rootProject.ext.dependencies["glide"]
+    compile rootProject.ext.dependencies["glide-transformations"]
     compile rootProject.ext.dependencies["eventbus"]
     compile rootProject.ext.dependencies["dagger"]
     compile rootProject.ext.dependencies["butterknife"]
