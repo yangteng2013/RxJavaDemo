@@ -37,5 +37,6 @@
         <item>buttonGradient</item>
         <item>intro</item>
         <item>intro2</item>
+        <item>flowLayout</item>
     </string-array>
 </resources>
