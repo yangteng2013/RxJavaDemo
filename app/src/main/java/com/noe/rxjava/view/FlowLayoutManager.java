@@ -223,17 +223,25 @@ public class FlowLayoutManager extends RecyclerView.LayoutManager {
             //利用最后一个子View比较修正
             View lastChild = getChildAt(getChildCount() - 1);
             if (getPosition(lastChild) == getItemCount() - 1) {
-                int gap = getHeight() - getPaddingBottom() - getDecoratedBottom(lastChild);
-                if (gap > 0) {
-                    realOffset = -gap;
-                } else if (gap == 0) {
+                if (getItemCount() == getChildCount() && (getHeight() - getPaddingBottom()) >= getDecoratedBottom(lastChild)) {
                     realOffset = 0;
-                } else {
-                    realOffset = Math.min(realOffset, -gap);
+                } else if (getPosition(lastChild) == getItemCount() - 1) {
+                    int gap = getHeight() - getPaddingBottom() - getDecoratedBottom(lastChild);
+                    if (gap > 0) {
+                        realOffset = -gap;
+                    } else if (gap == 0) {
+                        realOffset = 0;
+                    } else {
+                        realOffset = Math.min(realOffset, -gap);
+                    }
                 }
+
             }
         }
-
+        //如果对realOffset检测后 为0 则直接返回
+        if (0 == realOffset) {
+            return realOffset;
+        }
         realOffset = fill(recycler, state, realOffset);//先填充，再位移。
 
         mVerticalOffset += realOffset;//累加实际滑动距离
