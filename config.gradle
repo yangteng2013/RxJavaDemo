@@ -23,7 +23,7 @@ ext {
             butterknifeVersion      : "8.5.1",
             timberVersion           : "4.5.1",
             constraintLayoutVersion : "1.0.0",
-            vlayoutVersion          : "1.0.1@aar"
+            vlayoutVersion          : "1.0.3@aar"
     ]
 
     dependencies = [
