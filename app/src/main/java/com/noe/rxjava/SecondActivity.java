@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -166,7 +165,7 @@ public class SecondActivity extends AppCompatActivity {
                             startActivity(new Intent(SecondActivity.this, Intro2Activity.class));
                             break;
                         case 17:
-
+                            startActivity(new Intent(SecondActivity.this, FlowActivity.class));
                             break;
                         default:
                             break;
