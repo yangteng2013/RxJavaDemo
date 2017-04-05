@@ -23,7 +23,9 @@ ext {
             butterknifeVersion      : "8.5.1",
             timberVersion           : "4.5.1",
             constraintLayoutVersion : "1.0.0",
-            vlayoutVersion          : "1.0.1@aar"
+            vlayoutVersion          : "1.0.1@aar",
+            arouterApiVersion       : "1.2.0",
+            arouterCompilerVerson   : "1.1.1"
     ]
 
     dependencies = [
@@ -48,6 +50,8 @@ ext {
             "constraint-layout"    : "com.android.support.constraint:constraint-layout:${android["constraintLayoutVersion"]}",
             "dagger-compiler"      : "com.google.dagger:dagger-compiler:${android["daggerVersion"]}",
             "butterknife-compiler" : "com.jakewharton:butterknife-compiler:${android["butterknifeVersion"]}",
-            "vlayout"              : "com.alibaba.android:vlayout:${android["vlayoutVersion"]}"
+            "vlayout"              : "com.alibaba.android:vlayout:${android["vlayoutVersion"]}",
+            "arouter-api"          : "com.alibaba:arouter-api:${android["arouterApiVersion"]}",
+            "arouter-compiler"     : "com.alibaba:arouter-compiler:${android["arouterCompilerVerson"]}"
     ]
 }

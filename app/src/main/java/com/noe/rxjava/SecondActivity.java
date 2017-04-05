@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -29,6 +31,7 @@ import java.util.Arrays;
 /**
  * Created by 58 on 2016/8/24. 分发页面
  */
+@Route(path = "/rxjava/second/activity")
 public class SecondActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Context mContext;
