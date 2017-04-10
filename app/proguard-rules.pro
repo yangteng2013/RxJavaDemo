@@ -331,6 +331,8 @@
 #-keep public class com.ganji.android.platform.plugin.PluginThemeHelper {*;}#可选
 #-keep public class com.ganji.android.platform.plugin.localservice.LocalServiceManager {*;}#可选
 #-keep public class com.ganji.android.platform.plugin.util.NotificationHelper {*;}#可选
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
 
 #极光混淆规则
 -dontoptimize

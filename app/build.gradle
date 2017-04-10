@@ -21,6 +21,11 @@ android {
         ndk {
             abiFilters "armeabi", "armeabi-v7a"
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
 
     dexOptions {
@@ -76,7 +81,9 @@ dependencies {
     compile rootProject.ext.dependencies["butterknife"]
     compile rootProject.ext.dependencies["timber"]
     compile rootProject.ext.dependencies["constraint-layout"]
+    compile rootProject.ext.dependencies["arouter-api"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     compile 'com.android.support.constraint:constraint-layout:1.0.0'
 }

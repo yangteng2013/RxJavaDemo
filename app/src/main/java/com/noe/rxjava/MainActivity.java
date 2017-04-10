@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.noe.rxjava.bean.HotWordBean;
 import com.noe.rxjava.bean.TopicListBean;
 import com.noe.rxjava.data.ApiService;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DragHelperActivity.class)));
         buttonBar = (Button) findViewById(R.id.buttonBar);
         btnSecond = (Button) findViewById(R.id.buttonSecond);
-        if(Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN){
+        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             btnSecond.setBackground(ScrimUtil.makeCubicGradientScrimDrawable(getResources().getColor(R.color.colorPrimary), //颜色
                     8, //渐变层数
                     Gravity.BOTTOM));
@@ -99,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
         buttonBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BarActivity.class));
+//                startActivity(new Intent(MainActivity.this, BarActivity.class));
+                ARouter.getInstance().build("/rxjava/second/activity").navigation();
             }
         });
 
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
         timer = new Timer();
 
-       timer.schedule(task, 0, 1000);
+        timer.schedule(task, 0, 1000);
     }
 
     TimerTask task = new TimerTask() {

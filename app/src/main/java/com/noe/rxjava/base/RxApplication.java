@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.noe.rxjava.BuildConfig;
 import com.noe.rxjava.data.LocationService;
 
@@ -35,14 +36,17 @@ public class RxApplication extends Application {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
+            ARouter.openLog();
+            ARouter.openDebug();
         }
+        ARouter.init(instance);
     }
 
     public static RxApplication getInstance() {
         return instance;
     }
 
-    public static int getWidth(){
+    public static int getWidth() {
         DisplayMetrics displayMetrics = instance.getApplicationContext().getResources().getDisplayMetrics();
         return displayMetrics.widthPixels;
     }
