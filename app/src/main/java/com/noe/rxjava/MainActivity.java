@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.noe.rxjava.base.RxApplication;
 import com.noe.rxjava.bean.HotWordBean;
 import com.noe.rxjava.bean.TopicListBean;
 import com.noe.rxjava.data.ApiService;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                startActivity(new Intent(MainActivity.this, BarActivity.class));
-                ARouter.getInstance().build("/rxjava/second/activity").navigation();
+                ARouter.getInstance().build("/rxjava/bar/activity").navigation();
             }
         });
 
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Observable<HotWordBean> observable = RetroFactory.createApi(this, ApiService.class).getHotWordBean(58, "android", "test", "com.esvideo");
+        Observable<HotWordBean> observable = RetroFactory.createApi(RxApplication.getInstance(), ApiService.class).getHotWordBean(58, "android", "test", "com.esvideo");
         observable.subscribeOn(Schedulers.io())//Schedulers.io(): I/O 操作（读写文件、读写数据库、网络信息交互等）
                 .observeOn(AndroidSchedulers.mainThread()).unsubscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<HotWordBean>() {
@@ -294,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
         map.put("ps", String.valueOf(10));
         map.put("cversion", String.valueOf(0));
 
-        Observable<TopicListBean> topicListBeanObservable = RetroFactory.createApi(this, ApiService.class).getTopicListBean(map);
+        Observable<TopicListBean> topicListBeanObservable = RetroFactory.createApi(RxApplication.getInstance(), ApiService.class).getTopicListBean(map);
         topicListBeanObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).unsubscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<TopicListBean>() {
                     @Override

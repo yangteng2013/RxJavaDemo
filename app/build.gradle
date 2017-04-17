@@ -23,7 +23,7 @@ android {
         }
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -82,6 +82,8 @@ dependencies {
     compile rootProject.ext.dependencies["timber"]
     compile rootProject.ext.dependencies["constraint-layout"]
     compile rootProject.ext.dependencies["arouter-api"]
+    debugCompile rootProject.ext.dependencies["leakcanary-android"]
+    releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
