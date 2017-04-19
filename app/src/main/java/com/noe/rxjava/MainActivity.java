@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -117,9 +118,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, SecondActivity.class));
         });
 
-        timer = new Timer();
-
-        timer.schedule(task, 0, 1000);
+//        timer = new Timer();
+//
+//        timer.schedule(task, 0, 1000);
+        new AdCountDownTimer(3000,1000).start();
     }
 
     TimerTask task = new TimerTask() {
@@ -139,6 +141,23 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     };
+
+    private class AdCountDownTimer extends CountDownTimer {
+
+        AdCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            mTitle.setText(String.format("%s 跳过", millisUntilFinished / 1000));
+        }
+
+        @Override
+        public void onFinish() {
+            this.cancel();
+        }
+    }
 
     private void initData() {
         new Thread(() -> {
