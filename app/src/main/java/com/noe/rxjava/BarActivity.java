@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.noe.rxjava.util.ArouterUtils;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by 58 on 2016/8/5.
  */
-@Route(path = "/rxjava/bar/activity")
+@Route(path = ArouterUtils.ACTIVITY_BAR)
 public class BarActivity extends AppCompatActivity {
 
     private ListView mListViewBar;

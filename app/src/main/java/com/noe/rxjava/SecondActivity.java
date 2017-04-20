@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.noe.rxjava.util.ArouterUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -30,7 +32,7 @@ import java.util.Arrays;
 /**
  * Created by 58 on 2016/8/24. 分发页面
  */
-@Route(path = "/rxjava/second/activity")
+@Route(path = ArouterUtils.ACTIVITY_SECOND)
 public class SecondActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Context mContext;
@@ -166,6 +168,9 @@ public class SecondActivity extends AppCompatActivity {
                             break;
                         case 17:
                             startActivity(new Intent(SecondActivity.this, FlowActivity.class));
+                            break;
+                        case 18:
+                            ARouter.getInstance().build(ArouterUtils.ACTIVITY_DOUBAN).navigation();
                             break;
                         default:
                             break;

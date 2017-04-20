@@ -22,6 +22,7 @@ import com.noe.rxjava.bean.HotWordBean;
 import com.noe.rxjava.bean.TopicListBean;
 import com.noe.rxjava.data.ApiService;
 import com.noe.rxjava.data.RetroFactory;
+import com.noe.rxjava.util.ArouterUtils;
 import com.noe.rxjava.util.ScrimUtil;
 import com.squareup.picasso.Picasso;
 
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                startActivity(new Intent(MainActivity.this, BarActivity.class));
-                ARouter.getInstance().build("/rxjava/bar/activity").navigation();
+                ARouter.getInstance().build(ArouterUtils.ACTIVITY_BAR).navigation();
             }
         });
 
@@ -115,8 +116,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnSecond.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, SecondActivity.class));
+//            startActivity(new Intent(MainActivity.this, SecondActivity.class));
+            ARouter.getInstance().build(ArouterUtils.ACTIVITY_SECOND).navigation();
         });
+
 
 //        timer = new Timer();
 //
