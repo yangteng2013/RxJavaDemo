@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.github.moduth.blockcanary.BlockCanary;
 import com.noe.rxjava.BuildConfig;
 import com.noe.rxjava.data.LocationService;
 import com.squareup.leakcanary.LeakCanary;
@@ -39,6 +40,9 @@ public class RxApplication extends Application {
             return;
         }
         LeakCanary.install(this);
+
+        BlockCanary.install(this, new AppContext()).start();
+
         locationService = new LocationService(getApplicationContext());
 
         if (BuildConfig.DEBUG) {

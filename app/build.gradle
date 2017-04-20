@@ -82,6 +82,7 @@ dependencies {
     compile rootProject.ext.dependencies["timber"]
     compile rootProject.ext.dependencies["constraint-layout"]
     compile rootProject.ext.dependencies["arouter-api"]
+    compile rootProject.ext.dependencies["blockcanary-android"]
     debugCompile rootProject.ext.dependencies["leakcanary-android"]
     releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]

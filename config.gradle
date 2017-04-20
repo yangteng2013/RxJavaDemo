@@ -27,7 +27,8 @@ ext {
             vlayoutVersion          : "1.0.3@aar",
             arouterApiVersion       : "1.2.0",
             arouterCompilerVerson   : "1.1.1",
-            leakcanaryVersion       : "1.5"
+            leakcanaryVersion       : "1.5",
+            blockcanaryVersion      : "1.5.0"
     ]
     dependencies = [
             "multidex"                : "com.android.support:multidex:${android["multidexVersion"]}",
@@ -55,6 +56,7 @@ ext {
             "arouter-api"             : "com.alibaba:arouter-api:${android["arouterApiVersion"]}",
             "arouter-compiler"        : "com.alibaba:arouter-compiler:${android["arouterCompilerVerson"]}",
             "leakcanary-android"      : "com.squareup.leakcanary:leakcanary-android:${android["leakcanaryVersion"]}",
-            "leakcanary-android-no-op": "com.squareup.leakcanary:leakcanary-android-no-op:${android["leakcanaryVersion"]}"
+            "leakcanary-android-no-op": "com.squareup.leakcanary:leakcanary-android-no-op:${android["leakcanaryVersion"]}",
+            "blockcanary-android"     : "com.github.markzhai:blockcanary-android:${android["blockcanaryVersion"]}"
     ]
 }
