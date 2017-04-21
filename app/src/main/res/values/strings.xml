@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RxJava</string>
+    <string name="cover">cover</string>
 </resources>

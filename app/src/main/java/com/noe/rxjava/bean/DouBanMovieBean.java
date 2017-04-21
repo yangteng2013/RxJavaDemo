@@ -16,6 +16,4 @@ public class DouBanMovieBean implements Serializable {
     public String title;
     @JsonProperty("subjects")
     public ArrayList<MovieDetailBean> subjects;
-
-
 }

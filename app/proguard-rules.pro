@@ -117,6 +117,9 @@
     public <init>(android.content.Context,android.util.AttributeSet,int);
 }
 
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
+
 # Also keep - Enumerations. Keep the special static methods that are required in
 # enumeration classes.
 -keepclassmembers enum  * {

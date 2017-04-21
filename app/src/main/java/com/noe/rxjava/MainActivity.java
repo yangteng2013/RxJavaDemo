@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
         new Thread(() -> {
-            httpGet(baidu);
+//            httpGet(baidu);
 
         }).start();
         /**

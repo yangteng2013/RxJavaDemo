@@ -20,7 +20,7 @@ ext {
             glideVersion            : "3.7.0",
             transformationVersion   : "2.0.2",
             eventbusVersion         : "3.0.0",
-            daggerVersion           : "2.8",
+            daggerVersion           : "2.10",
             butterknifeVersion      : "8.5.1",
             timberVersion           : "4.5.1",
             constraintLayoutVersion : "1.0.0",
