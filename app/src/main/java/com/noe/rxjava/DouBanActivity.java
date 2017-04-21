@@ -15,24 +15,19 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.noe.rxjava.bean.DouBanMovieBean;
 import com.noe.rxjava.bean.MovieDetailBean;
-import com.noe.rxjava.data.DouBanApiService;
-import com.noe.rxjava.data.DouBanRetroFactory;
+import com.noe.rxjava.mvp.contract.DouBanContract;
+import com.noe.rxjava.mvp.presenter.DouBanPresenter;
 import com.noe.rxjava.util.ArouterUtils;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import timber.log.Timber;
 
 @Route(path = ArouterUtils.ACTIVITY_DOUBAN)
-public class DouBanActivity extends AppCompatActivity {
+public class DouBanActivity extends AppCompatActivity implements DouBanContract.View {
 
-
+    private DouBanPresenter mDouBanPresenter;
     @BindView(R.id.rv_douban)
     RecyclerView mRecyclerView;
 
@@ -41,31 +36,24 @@ public class DouBanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_douban);
         ButterKnife.bind(this);
-        initData();
+        mDouBanPresenter = new DouBanPresenter(this);
+        mDouBanPresenter.subscribe(this);
     }
 
-    private void initData() {
-        Observable<DouBanMovieBean> observable = DouBanRetroFactory.createApi(DouBanActivity.this, DouBanApiService.class).getDouBanMovieBean();
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).unsubscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<DouBanMovieBean>() {
-                    @Override
-                    public void onCompleted() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
-                    }
+    @Override
+    public void setPresenter(DouBanContract.Presenter presenter) {
+    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Timber.e(e);
-                    }
-
-                    @Override
-                    public void onNext(DouBanMovieBean douBanMovieBean) {
-                        DouBanAdapter adapter = new DouBanAdapter(DouBanActivity.this, douBanMovieBean.subjects);
-                        mRecyclerView.setLayoutManager(new GridLayoutManager(DouBanActivity.this, 3));
-                        mRecyclerView.setAdapter(adapter);
-                    }
-                });
+    @Override
+    public void setContent(DouBanMovieBean douBanMovieBean) {
+        DouBanAdapter adapter = new DouBanAdapter(DouBanActivity.this, douBanMovieBean.subjects);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(DouBanActivity.this, 3));
+        mRecyclerView.setAdapter(adapter);
     }
 
     private class DouBanAdapter extends RecyclerView.Adapter<ViewHolder> {
