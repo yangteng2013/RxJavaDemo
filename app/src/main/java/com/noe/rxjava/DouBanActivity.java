@@ -15,11 +15,15 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.noe.rxjava.bean.DouBanMovieBean;
 import com.noe.rxjava.bean.MovieDetailBean;
+import com.noe.rxjava.di.component.DaggerActivityComponent;
+import com.noe.rxjava.di.module.ActivityModule;
 import com.noe.rxjava.mvp.contract.DouBanContract;
 import com.noe.rxjava.mvp.presenter.DouBanPresenter;
 import com.noe.rxjava.util.ArouterUtils;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +31,8 @@ import butterknife.ButterKnife;
 @Route(path = ArouterUtils.ACTIVITY_DOUBAN)
 public class DouBanActivity extends AppCompatActivity implements DouBanContract.View {
 
-    private DouBanPresenter mDouBanPresenter;
+    @Inject
+    DouBanPresenter mDouBanPresenter;
     @BindView(R.id.rv_douban)
     RecyclerView mRecyclerView;
 
@@ -36,7 +41,9 @@ public class DouBanActivity extends AppCompatActivity implements DouBanContract.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_douban);
         ButterKnife.bind(this);
-        mDouBanPresenter = new DouBanPresenter(this);
+//        mDouBanPresenter = new DouBanPresenter(this);
+//        mDuBanPresenter.subscribe(this);
+        DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).build().inject(this);
         mDouBanPresenter.subscribe(this);
     }
 

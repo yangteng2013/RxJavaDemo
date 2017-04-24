@@ -7,6 +7,8 @@ import com.noe.rxjava.data.DouBanApiService;
 import com.noe.rxjava.data.DouBanRetroFactory;
 import com.noe.rxjava.mvp.contract.DouBanContract;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -20,7 +22,8 @@ import timber.log.Timber;
 public class DouBanPresenter implements DouBanContract.Presenter {
     private final DouBanContract.View mView;
 
-    public DouBanPresenter(DouBanContract.View view) {
+    @Inject
+    DouBanPresenter(DouBanContract.View view) {
         this.mView = view;
         mView.setPresenter(this);
     }
