@@ -172,6 +172,12 @@ public class SecondActivity extends AppCompatActivity {
                         case 18:
                             ARouter.getInstance().build(ArouterUtils.ACTIVITY_DOUBAN).navigation();
                             break;
+                        case 19:
+                            ARouter.getInstance().build(ArouterUtils.ACTIVITY_XRECYCLER).navigation();
+                            break;
+                        case 20:
+                            ARouter.getInstance().build(ArouterUtils.ACTIVITY_BEHAVIOR).navigation();
+                            break;
                         default:
                             break;
                     }

@@ -39,5 +39,7 @@
         <item>intro2</item>
         <item>flowLayout</item>
         <item>douban</item>
+        <item>xrecycler</item>
+        <item>behavior</item>
     </string-array>
 </resources>

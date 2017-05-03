@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.noe.rxjava.R;
 import com.noe.rxjava.view.NoScrollListView;
 
 import java.util.ArrayList;
+
+import timber.log.Timber;
 
 
 /**
@@ -31,6 +34,7 @@ public class PageFragment extends Fragment {
     public static PageFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
+
         PageFragment pageFragment = new PageFragment();
         pageFragment.setArguments(args);
         return pageFragment;
@@ -52,13 +56,14 @@ public class PageFragment extends Fragment {
     }
 
     private void initView(View view) {
-        String mString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        for (int i = 0; i < mString.length(); i++) {
-            arrayList.add(String.valueOf(mString.charAt(i)));
+        for (int i = 'A'; i <= 'Z'; i++) {
+            arrayList.add(((char) i) + "");
         }
         mListView = (NoScrollListView) view.findViewById(R.id.list_fragment);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, arrayList);
-        mListView.setAdapter(arrayAdapter);
+        ItemAdapter itemAdapter = new ItemAdapter();
+
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, arrayList);
+        mListView.setAdapter(itemAdapter);
 
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -68,14 +73,51 @@ public class PageFragment extends Fragment {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (view.getLastVisiblePosition() == view.getCount() - 1){
-                    String mString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                    for (int i = 0; i < mString.length(); i++) {
-                        arrayList.add(String.valueOf(mString.charAt(i)));
+                if (view.getLastVisiblePosition() == view.getCount() - 1) {
+                    for (int i = 'A'; i <= 'Z'; i++) {
+                        arrayList.add(((char) i) + "");
                     }
-                    arrayAdapter.notifyDataSetChanged();
+                    itemAdapter.notifyDataSetChanged();
                 }
             }
         });
+    }
+
+    class ItemAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return arrayList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return arrayList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
+            ViewHolder holder;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_viewpager, null);
+                holder = new ViewHolder();
+                holder.mTitle = (TextView) convertView.findViewById(R.id.title);
+                convertView.setTag(holder);
+                Timber.i("createView----->" + position);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            holder.mTitle.setText(arrayList.get(position));
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView mTitle;
+        }
     }
 }
