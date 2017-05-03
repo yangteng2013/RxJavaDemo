@@ -30,7 +30,6 @@ public class XRecyclerPageFragment extends Fragment implements ObservableFragmen
     private int mPage;
     ArrayList<String> arrayList = new ArrayList<>();
     private RecyclerView mRecyclerView;
-    private View headerView;
 
     public static XRecyclerPageFragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -61,14 +60,11 @@ public class XRecyclerPageFragment extends Fragment implements ObservableFragmen
             arrayList.add(((char) i) + "");
         }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        headerView = View.inflate(mContext, R.layout.header_recycler, null);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         //设置布局管理器
         mRecyclerView.setLayoutManager(layoutManager);
 
-
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(arrayList);
-//        adapter.addHeaderView(headerView);
         mRecyclerView.setAdapter(adapter);
 
 
@@ -86,9 +82,6 @@ public class XRecyclerPageFragment extends Fragment implements ObservableFragmen
 
     class MyRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         private ArrayList<String> mArrayList;
-        public static final int TYPE_HEADER = 0;
-        public static final int TYPE_NORMAL = 1;
-        private View mHeaderView;
 
         public MyRecyclerAdapter(ArrayList<String> arrayList) {
             this.mArrayList = arrayList;
@@ -96,46 +89,20 @@ public class XRecyclerPageFragment extends Fragment implements ObservableFragmen
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            if (mHeaderView != null && viewType == TYPE_HEADER) {
-                return new ViewHolder(mHeaderView);
-            }
+
             View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_item, parent, false);
             ViewHolder viewHolder = new ViewHolder(view);
             return viewHolder;
         }
 
-        public void addHeaderView(View headerView) {
-            mHeaderView = headerView;
-            notifyItemInserted(0);
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            if (mHeaderView == null) {
-                return TYPE_NORMAL;
-            }
-            if (position == 0) {
-                return TYPE_HEADER;
-            }
-            return TYPE_NORMAL;
-        }
-
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            if (getItemViewType(position) == TYPE_HEADER) {
-                return;
-            }
-            if (mHeaderView == null) {
-
-                holder.mTextView.setText(arrayList.get(position));
-            } else {
-                holder.mTextView.setText(arrayList.get(position - 1));
-            }
+            holder.mTextView.setText(arrayList.get(position));
         }
 
         @Override
         public int getItemCount() {
-            return mHeaderView == null ? mArrayList.size() : mArrayList.size() + 1;
+            return mArrayList.size();
         }
 
     }
@@ -146,9 +113,6 @@ public class XRecyclerPageFragment extends Fragment implements ObservableFragmen
 
         ViewHolder(View itemView) {
             super(itemView);
-            if (itemView == headerView) {
-                return;
-            }
             mTextView = (TextView) itemView.findViewById(R.id.tv_recycler);
         }
     }
