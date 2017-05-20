@@ -41,5 +41,7 @@
         <item>douban</item>
         <item>xrecycler</item>
         <item>behavior</item>
+        <item>parallax</item>
+        <item>pull</item>
     </string-array>
 </resources>

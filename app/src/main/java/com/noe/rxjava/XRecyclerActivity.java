@@ -2,6 +2,7 @@ package com.noe.rxjava;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +19,7 @@ public class XRecyclerActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     private Context mContext;
+    private AppBarLayout mAppBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,8 @@ public class XRecyclerActivity extends AppCompatActivity {
     private void initView() {
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
         mTabLayout = (TabLayout) findViewById(R.id.toolbar_tab);
-        mViewPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager(), this));
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
+        mViewPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager(), mAppBarLayout,this));
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -39,16 +42,18 @@ public class XRecyclerActivity extends AppCompatActivity {
     public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
         private String tabTitles[] = new String[]{"最热", "最新"};
+        private AppBarLayout mAppBarLayout;
         private Context context;
 
-        public SimpleFragmentPagerAdapter(FragmentManager fm, Context context) {
+        public SimpleFragmentPagerAdapter(FragmentManager fm, AppBarLayout appBarLayout, Context context) {
             super(fm);
             this.context = context;
+            this.mAppBarLayout = appBarLayout;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return XRecyclerPageFragment.newInstance(position + 1);
+            return XRecyclerPageFragment.newInstance(position + 1,mAppBarLayout);
         }
 
         @Override

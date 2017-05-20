@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,12 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
         for (int i = 'A'; i <= 'Z'; i++) {
             mArrayList.add(((char) i) + "");
         }
+        for (int i = 'A'; i <= 'Z'; i++) {
+            mArrayList.add(((char) i) + "");
+        }
+        for (int i = 'A'; i <= 'Z'; i++) {
+            mArrayList.add(((char) i) + "");
+        }
         CusAdapter adapter = new CusAdapter(mArrayList);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -92,7 +99,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
                     mRecyclerView.setLayoutManager(layoutManager);
-                } else  {
+                } else {
                     mRecyclerView.setLayoutManager(gridLayoutManager);
                 }
                 break;
@@ -100,6 +107,8 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
+    int count;
 
     class CusAdapter extends RecyclerView.Adapter<ViewHolder> {
         private ArrayList<String> arrayList;
@@ -122,6 +131,11 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
             return viewHolder;
         }
 
+        @Override
+        public void onViewRecycled(ViewHolder holder) {
+            super.onViewRecycled(holder);
+            Log.d("xxxx-->", "onViewRecycled: " + holder.mTextView.getText().toString() + ", position: " + holder.getAdapterPosition());
+        }
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
@@ -130,7 +144,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
             holder.mTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(position,arrayList.get(position));
+                    mOnItemClickListener.onItemClick(position, arrayList.get(position));
                 }
             });
         }
@@ -149,12 +163,12 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
 
         ViewHolder(View itemView) {
             super(itemView);
-
+            Log.i("onCreateViewHolder", "ViewHolder" + count++);
             mTextView = (TextView) itemView.findViewById(R.id.tv_card);
         }
     }
 
-    public  interface OnItemClickListener {
-        void onItemClick(int position , String data);
+    public interface OnItemClickListener {
+        void onItemClick(int position, String data);
     }
 }

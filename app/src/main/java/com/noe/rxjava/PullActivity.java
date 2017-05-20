@@ -12,35 +12,30 @@ import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.noe.rxjava.fragment.RecyclerPageFragment;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.noe.rxjava.fragment.PullRecyclerPageFragment;
+import com.noe.rxjava.util.ArouterUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import me.henrytao.smoothappbarlayout.SmoothAppBarLayout;
 import me.henrytao.smoothappbarlayout.base.ObservableFragment;
 import me.henrytao.smoothappbarlayout.base.ObservablePagerAdapter;
-
-/**
- * Created by 58 on 2016/8/5.
- */
-public class SmoothBarActivity extends AppCompatActivity {
+@Route(path = ArouterUtils.ACTIVITY_PULL)
+public class PullActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
     private Bundle savedInstanceState;
     private ImageView mImageView;
-    private SmoothAppBarLayout mSmoothAppBarLayout;
-    private boolean isAttached;
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pull);
         this.savedInstanceState = savedInstanceState;
-        setContentView(R.layout.activity_smoothbar);
         initView();
         initData();
     }
@@ -49,28 +44,18 @@ public class SmoothBarActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.view_pager_recycler);
         mTabLayout = (TabLayout) findViewById(R.id.bar_tab);
         mImageView = (ImageView) findViewById(R.id.image);
-        mSmoothAppBarLayout = (SmoothAppBarLayout) findViewById(R.id.app_bar);
         mImageView.setOnClickListener(v -> {
 
         });
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (!isAttached) {
-            int height = mSmoothAppBarLayout.getHeight();
-            simpleFragmentPagerAdapter.addFragment("工友圈", RecyclerPageFragment.newInstance(1, height));
-            simpleFragmentPagerAdapter.addFragment("匿名八卦", RecyclerPageFragment.newInstance(2, height));
-            mViewPager.setAdapter(simpleFragmentPagerAdapter);
-            mTabLayout.setupWithViewPager(mViewPager);
-            isAttached = true;
-        }
-    }
-
     private void initData() {
         simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), this);
         simpleFragmentPagerAdapter.onRestoreInstanceState(savedInstanceState);
+        simpleFragmentPagerAdapter.addFragment("最热", PullRecyclerPageFragment.newInstance(1));
+        simpleFragmentPagerAdapter.addFragment("最新", PullRecyclerPageFragment.newInstance(2));
+        mViewPager.setAdapter(simpleFragmentPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter implements ObservablePagerAdapter {

@@ -176,7 +176,12 @@ public class SecondActivity extends AppCompatActivity {
                             ARouter.getInstance().build(ArouterUtils.ACTIVITY_XRECYCLER).navigation();
                             break;
                         case 20:
-                            ARouter.getInstance().build(ArouterUtils.ACTIVITY_BEHAVIOR).navigation();
+                            ARouter.getInstance().build(ArouterUtils.ACTIVITY_XRECYCLER).navigation();
+                            break;
+                        case 21:
+                            ARouter.getInstance().build(ArouterUtils.ACTIVITY_PARALLAX).navigation();
+                        case 22:
+                            ARouter.getInstance().build(ArouterUtils.ACTIVITY_PULL).navigation();
                             break;
                         default:
                             break;
