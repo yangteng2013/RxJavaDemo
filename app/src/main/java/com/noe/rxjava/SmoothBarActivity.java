@@ -1,6 +1,7 @@
 package com.noe.rxjava;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,11 +10,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.noe.rxjava.fragment.RecyclerPageFragment;
+import com.noe.rxjava.util.Utils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,11 +40,13 @@ public class SmoothBarActivity extends AppCompatActivity {
     private ImageView mImageView;
     private SmoothAppBarLayout mSmoothAppBarLayout;
     private boolean isAttached;
+    private Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.savedInstanceState = savedInstanceState;
+        mContext = this;
         setContentView(R.layout.activity_smoothbar);
         initView();
         initData();
@@ -50,6 +57,7 @@ public class SmoothBarActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.bar_tab);
         mImageView = (ImageView) findViewById(R.id.image);
         mSmoothAppBarLayout = (SmoothAppBarLayout) findViewById(R.id.app_bar);
+
         mImageView.setOnClickListener(v -> {
 
         });
@@ -65,6 +73,7 @@ public class SmoothBarActivity extends AppCompatActivity {
             mViewPager.setAdapter(simpleFragmentPagerAdapter);
             mTabLayout.setupWithViewPager(mViewPager);
             isAttached = true;
+            setUpIndicatorWidth();
         }
     }
 
@@ -149,5 +158,42 @@ public class SmoothBarActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         simpleFragmentPagerAdapter.onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);
+    }
+
+    /**
+     * 通过反射修改TabLayout Indicator的宽度（仅在Android 4.2及以上生效）
+     */
+    private void setUpIndicatorWidth() {
+        Class<?> tabLayoutClass = mTabLayout.getClass();
+        Field tabStrip = null;
+        try {
+            tabStrip = tabLayoutClass.getDeclaredField("mTabStrip");
+            tabStrip.setAccessible(true);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        LinearLayout layout = null;
+        try {
+            if (tabStrip != null) {
+                layout = (LinearLayout) tabStrip.get(mTabLayout);
+            }
+            if (layout == null) {
+                return;
+            }
+            for (int i = 0; i < layout.getChildCount(); i++) {
+                View child = layout.getChildAt(i);
+                child.setPadding(0, 0, 0, 0);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    params.setMarginStart(Utils.dipToPixel(mContext, 60f));
+                    params.setMarginEnd(Utils.dipToPixel(mContext, 60f));
+                }
+                child.setLayoutParams(params);
+                child.invalidate();
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

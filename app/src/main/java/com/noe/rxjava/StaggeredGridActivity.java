@@ -18,8 +18,6 @@ import com.noe.rxjava.bean.PersonCard;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
-
 /**
  * Created by lijie24 on 2016/12/2.
  */
@@ -99,11 +97,12 @@ public class StaggeredGridActivity extends AppCompatActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             MyViewHolder holder2 = (MyViewHolder) holder;
             PersonCard personCard = mData.get(position);
-            if (position % 2 == 0) {
-                Glide.with(mContext).load(personCard.avatarUrl).into(holder2.userAvatar);
-            } else {
-                Glide.with(mContext).load(personCard.avatarUrl).bitmapTransform(new RoundedCornersTransformation(mContext, 10, 0, RoundedCornersTransformation.CornerType.ALL)).into(holder2.userAvatar);
-            }
+//            if (position % 2 == 0) {
+//                Glide.with(mContext).load(personCard.avatarUrl).into(holder2.userAvatar);
+//            } else {
+//                Glide.with(mContext).load(personCard.avatarUrl).bitmapTransform(new RoundedCornersTransformation(mContext, 10, 0, RoundedCornersTransformation.CornerType.ALL)).into(holder2.userAvatar);
+//            }
+            Glide.with(mContext).load(personCard.avatarUrl).into(holder2.userAvatar);
             holder2.userAvatar.getLayoutParams().height = personCard.imgHeight; //从数据源中获取图片高度，动态设置到控件上
             holder2.userName.setText(personCard.name);
         }
