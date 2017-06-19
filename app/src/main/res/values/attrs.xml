@@ -20,4 +20,17 @@
         <attr name="tr_showRefreshingWhenOverScroll" format="boolean"/>
         <attr name="tr_showLoadingWhenOverScroll" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsTabTextColorSelected" format="color"/>
+        <attr name="pstsTabTextColorUnselected" format="color"/>
+        <attr name="pstsTabTextSize" format="dimension"/>
+        <attr name="pstsIndicatorColor" format="color"/>
+        <attr name="pstsIndicatorHeight" format="dimension"/>
+        <attr name="pstsIndicatorPadding" format="dimension"/>
+        <attr name="pstsIndicatorWidth" format="dimension"/>
+        <attr name="pstsTabPaddingLeftRight" format="dimension"/>
+        <attr name="pstsScrollOffset" format="dimension"/>
+        <attr name="pstsShouldExpand" format="boolean"/>
+    </declare-styleable>
 </resources>
