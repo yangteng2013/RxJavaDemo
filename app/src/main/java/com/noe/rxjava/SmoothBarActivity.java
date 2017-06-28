@@ -3,28 +3,29 @@ package com.noe.rxjava;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.noe.rxjava.fragment.RecyclerPageFragment;
 import com.noe.rxjava.util.Utils;
+import com.noe.rxjava.view.PagerTabLayout;
+import com.noe.rxjava.view.ScrollableSmoothAppBarLayout;
+import com.noe.rxjava.view.ScrollableViewPager;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import me.henrytao.smoothappbarlayout.SmoothAppBarLayout;
 import me.henrytao.smoothappbarlayout.base.ObservableFragment;
 import me.henrytao.smoothappbarlayout.base.ObservablePagerAdapter;
 
@@ -33,12 +34,11 @@ import me.henrytao.smoothappbarlayout.base.ObservablePagerAdapter;
  */
 public class SmoothBarActivity extends AppCompatActivity {
 
-    private ViewPager mViewPager;
-    private TabLayout mTabLayout;
+    private ScrollableViewPager mViewPager;
+    private PagerTabLayout mTabLayout;
     SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
     private Bundle savedInstanceState;
-    private ImageView mImageView;
-    private SmoothAppBarLayout mSmoothAppBarLayout;
+    private ScrollableSmoothAppBarLayout mSmoothAppBarLayout;
     private boolean isAttached;
     private Context mContext;
 
@@ -53,27 +53,40 @@ public class SmoothBarActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mViewPager = (ViewPager) findViewById(R.id.view_pager_recycler);
-        mTabLayout = (TabLayout) findViewById(R.id.bar_tab);
-        mImageView = (ImageView) findViewById(R.id.image);
-        mSmoothAppBarLayout = (SmoothAppBarLayout) findViewById(R.id.app_bar);
-
-        mImageView.setOnClickListener(v -> {
-
-        });
+        mViewPager = (ScrollableViewPager) findViewById(R.id.view_pager_recycler);
+        mTabLayout = (PagerTabLayout) findViewById(R.id.bar_tab);
+        mSmoothAppBarLayout = (ScrollableSmoothAppBarLayout) findViewById(R.id.app_bar);
+        mViewPager.setAppBarLayout(mSmoothAppBarLayout);
     }
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (!isAttached) {
+            SparseArray<String> s;
             int height = mSmoothAppBarLayout.getHeight();
             simpleFragmentPagerAdapter.addFragment("工友圈", RecyclerPageFragment.newInstance(1, height));
             simpleFragmentPagerAdapter.addFragment("匿名八卦", RecyclerPageFragment.newInstance(2, height));
             mViewPager.setAdapter(simpleFragmentPagerAdapter);
-            mTabLayout.setupWithViewPager(mViewPager);
+            mTabLayout.setViewPager(mViewPager);
+            mTabLayout.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
             isAttached = true;
-            setUpIndicatorWidth();
+//            setUpIndicatorWidth();
         }
     }
 
@@ -85,7 +98,7 @@ public class SmoothBarActivity extends AppCompatActivity {
     public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter implements ObservablePagerAdapter {
 
         private Context context;
-        private final Map<Integer, String> mTags = new HashMap<>();
+        private final SparseArray<String> mTags = new SparseArray<>();
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<CharSequence> mTitles = new ArrayList<>();
         private FragmentManager mFragmentManager;
@@ -147,8 +160,8 @@ public class SmoothBarActivity extends AppCompatActivity {
         }
 
         public void onSaveInstanceState(Bundle outState) {
-            for (Map.Entry<Integer, String> entry : mTags.entrySet()) {
-                outState.putString(makeTagName(entry.getKey()), entry.getValue());
+            for (int i = 0; i < mTags.size(); i++) {
+                outState.putString(makeTagName(mTags.keyAt(i)), mTags.valueAt(i));
             }
         }
 
@@ -186,8 +199,8 @@ public class SmoothBarActivity extends AppCompatActivity {
                 child.setPadding(0, 0, 0, 0);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    params.setMarginStart(Utils.dipToPixel(mContext, 60f));
-                    params.setMarginEnd(Utils.dipToPixel(mContext, 60f));
+                    params.setMarginStart(Utils.dipToPixel(mContext, 36));
+                    params.setMarginEnd(Utils.dipToPixel(mContext, 36));
                 }
                 child.setLayoutParams(params);
                 child.invalidate();
@@ -196,4 +209,39 @@ public class SmoothBarActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public abstract static class AppBarStateChangeListener implements AppBarLayout.OnOffsetChangedListener {
+
+        public enum State {
+            EXPANDED,
+            COLLAPSED,
+            IDLE
+        }
+
+        private State mCurrentState = State.IDLE;
+
+        @Override
+        public final void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+            Log.i("STATE-->", "verticalOffset-->" + verticalOffset);
+            if (verticalOffset == 0) {
+                if (mCurrentState != State.EXPANDED) {
+                    onStateChanged(appBarLayout, State.EXPANDED);
+                }
+                mCurrentState = State.EXPANDED;
+            } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
+                if (mCurrentState != State.COLLAPSED) {
+                    onStateChanged(appBarLayout, State.COLLAPSED);
+                }
+                mCurrentState = State.COLLAPSED;
+            } else {
+                if (mCurrentState != State.IDLE) {
+                    onStateChanged(appBarLayout, State.IDLE);
+                }
+                mCurrentState = State.IDLE;
+            }
+        }
+
+        public abstract void onStateChanged(AppBarLayout appBarLayout, State state);
+    }
+
 }

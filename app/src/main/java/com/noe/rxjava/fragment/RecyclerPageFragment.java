@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.noe.rxjava.R;
 
@@ -199,6 +200,13 @@ public class RecyclerPageFragment extends Fragment implements ObservableFragment
             }
             Log.i("onCreateViewHolder" + mPage, "ViewHolder" + count++);
             mTextView = (TextView) itemView.findViewById(R.id.tv_recycler);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext,mTextView.getText(),Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

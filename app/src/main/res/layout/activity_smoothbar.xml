@@ -6,12 +6,12 @@
     android:layout_height="match_parent">
 
 
-    <android.support.v4.view.ViewPager
+    <com.noe.rxjava.view.ScrollableViewPager
         android:id="@+id/view_pager_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <me.henrytao.smoothappbarlayout.SmoothAppBarLayout
+    <com.noe.rxjava.view.ScrollableSmoothAppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,18 +37,27 @@
             android:background="@drawable/banner"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
 
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/bar_tab"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:background="#ffffff"
-            app:tabIndicatorColor="#057523"
-            app:tabIndicatorHeight="2dp"
-            app:tabSelectedTextColor="#057523"
-            app:tabTextColor="#cecece"/>
+            android:layout_height="45dp"
+            android:background="#FFFFFF">
 
-    </me.henrytao.smoothappbarlayout.SmoothAppBarLayout>
+            <com.noe.rxjava.view.PagerTabLayout
+                android:id="@+id/bar_tab"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="90dp"
+                android:layout_marginRight="90dp"
+                app:tabShouldExpand="true"
+                app:tabTextColorSelected="#333333"
+                app:tabTextColorUnSelected="#999999"
+                app:tabTextSize="16sp"
+                app:tabUnderLineColor="#39BC30"
+                app:tabUnderLineHeight="2dp"
+                app:tabUnderLineWidth="16dp"/>
+        </LinearLayout>
+    </com.noe.rxjava.view.ScrollableSmoothAppBarLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
