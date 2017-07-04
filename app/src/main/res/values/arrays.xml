@@ -43,5 +43,6 @@
         <item>behavior</item>
         <item>parallax</item>
         <item>pull</item>
+        <item>JNI</item>
     </string-array>
 </resources>

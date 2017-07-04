@@ -173,6 +173,13 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
+        <activity
+            android:name=".JNIActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|locale"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -185,6 +192,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="vFdNzRQ4O8Pygjx1ce5CY5jTmWpnTPr1"/>
+
 
     </application>
 

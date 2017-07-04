@@ -26,6 +26,12 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+                abiFilters "armeabi", "armeabi-v7a"
+            }
+        }
     }
 
     dexOptions {
@@ -39,6 +45,12 @@ android {
             shrinkResources true // 去除未使用资源
             minifyEnabled true // 混淆、去除未使用类
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
         }
     }
 
