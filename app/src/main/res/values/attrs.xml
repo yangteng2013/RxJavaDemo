@@ -33,4 +33,9 @@
         <attr name="tabScrollOffset" format="dimension"/>
         <attr name="tabShouldExpand" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="MaxHeightView">
+        <attr name="mhv_HeightRatio" format="reference|float" />
+        <attr name="mhv_HeightDimen" format="reference|dimension" />
+    </declare-styleable>
 </resources>
