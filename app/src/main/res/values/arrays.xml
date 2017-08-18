@@ -45,5 +45,6 @@
         <item>pull</item>
         <item>JNI</item>
         <item>ViewFlipper</item>
+        <item>TOPLIST</item>
     </string-array>
 </resources>
