@@ -12,11 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bumptech.glide.Glide;
 import com.noe.rxjava.bean.DouBanMovieBean;
 import com.noe.rxjava.bean.MovieDetailBean;
 import com.noe.rxjava.di.component.DaggerActivityComponent;
 import com.noe.rxjava.di.module.ActivityModule;
+import com.noe.rxjava.image.ImageLoaderManager;
 import com.noe.rxjava.mvp.contract.DouBanContract;
 import com.noe.rxjava.mvp.presenter.DouBanPresenter;
 import com.noe.rxjava.util.ArouterUtils;
@@ -86,7 +86,8 @@ public class DouBanActivity extends AppCompatActivity implements DouBanContract.
                 if (movieDetailBean != null) {
                     holder.title.setText(movieDetailBean.title);
                     if (movieDetailBean.images != null) {
-                        Glide.with(mContext).load(movieDetailBean.images.large).into(holder.cover);
+                        ImageLoaderManager.getInstance().showImage(ImageLoaderManager.getDefaultOptions(holder.cover,movieDetailBean.images.large));
+//                        Glide.with(mContext).load(movieDetailBean.images.large).into(holder.cover);
                     }
                 }
             }

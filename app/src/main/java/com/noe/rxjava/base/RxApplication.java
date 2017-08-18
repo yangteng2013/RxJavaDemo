@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.noe.rxjava.BuildConfig;
 import com.noe.rxjava.data.LocationService;
+import com.noe.rxjava.image.ImageLoaderManager;
 import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
@@ -34,6 +35,7 @@ public class RxApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        ImageLoaderManager.getInstance().init(this);
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.

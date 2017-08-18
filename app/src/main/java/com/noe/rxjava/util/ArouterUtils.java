@@ -14,4 +14,5 @@ public class ArouterUtils {
     public static final String ACTIVITY_PARALLAX= "/rxjava/parallax/activity";
     public static final String ACTIVITY_PULL= "/rxjava/pull/activity";
     public static final String ACTIVITY_JNI= "/rxjava/jni/activity";
+    public static final String ACTIVITY_VIEWFLIPPER= "/rxjava/viewflipper/activity";
 }

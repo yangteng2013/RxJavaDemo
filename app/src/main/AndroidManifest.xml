@@ -172,9 +172,15 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
-
         <activity
             android:name=".JNIActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|locale"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
+        <activity
+            android:name=".ViewFlipperActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|locale"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

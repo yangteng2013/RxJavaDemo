@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.noe.rxjava.bean.PersonCard;
+import com.noe.rxjava.image.ImageLoaderManager;
 import com.noe.rxjava.view.SpacesItemDecoration;
 
 import java.util.ArrayList;
@@ -129,7 +129,8 @@ public class StaggeredGridActivity extends AppCompatActivity {
 //            } else {
 //                Glide.with(mContext).load(personCard.avatarUrl).bitmapTransform(new RoundedCornersTransformation(mContext, 10, 0, RoundedCornersTransformation.CornerType.ALL)).into(holder2.userAvatar);
 //            }
-            Glide.with(mContext).load(personCard.avatarUrl).into(holder2.userAvatar);
+            ImageLoaderManager.getInstance().showImage(ImageLoaderManager.getDefaultOptions(holder2.userAvatar,personCard.avatarUrl));
+//            Glide.with(mContext).load(personCard.avatarUrl).into(holder2.userAvatar);
             holder2.userAvatar.getLayoutParams().height = personCard.imgHeight; //从数据源中获取图片高度，动态设置到控件上
             holder2.userName.setText(personCard.name);
         }

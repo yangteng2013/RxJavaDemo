@@ -44,5 +44,6 @@
         <item>parallax</item>
         <item>pull</item>
         <item>JNI</item>
+        <item>ViewFlipper</item>
     </string-array>
 </resources>
