@@ -16,4 +16,5 @@ public class ArouterUtils {
     public static final String ACTIVITY_JNI = "/rxjava/jni/activity";
     public static final String ACTIVITY_VIEWFLIPPER = "/rxjava/viewflipper/activity";
     public static final String ACTIVITY_TOP_LIST = "/rxjava/toplist/activity";
+    public static final String ACTIVITY_AUTO_TEXT = "/rxjava/autotext/activity";
 }

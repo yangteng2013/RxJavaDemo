@@ -46,5 +46,6 @@
         <item>JNI</item>
         <item>ViewFlipper</item>
         <item>TOPLIST</item>
+        <item>AUTOTEXT</item>
     </string-array>
 </resources>

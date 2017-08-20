@@ -192,6 +192,9 @@ public class SecondActivity extends AppCompatActivity {
                         case 25:
                             ARouter.getInstance().build(ArouterUtils.ACTIVITY_TOP_LIST).navigation();
                             break;
+                        case 26:
+                            ARouter.getInstance().build(ArouterUtils.ACTIVITY_AUTO_TEXT).navigation();
+                            break;
                         default:
                             break;
                     }
