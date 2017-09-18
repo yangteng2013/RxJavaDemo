@@ -26,8 +26,6 @@ public class AutoScaleTextView extends TextView {
 
     public AutoScaleTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-        // Use this constructor, if you do not want use the default style
-        // super(context, attrs);
     }
 
     public AutoScaleTextView(Context context, AttributeSet attrs, int defStyle) {
@@ -61,8 +59,9 @@ public class AutoScaleTextView extends TextView {
      * @param textWidth The width of the TextView. > 0
      */
     private void refitText(String text, int textWidth) {
-        if (textWidth <= 0 || text == null || text.length() == 0)
+        if (textWidth <= 0 || text == null || text.length() == 0) {
             return;
+        }
 
         // the width
         int targetWidth = textWidth - this.getPaddingLeft() - this.getPaddingRight();
@@ -74,10 +73,11 @@ public class AutoScaleTextView extends TextView {
         while ((this.preferredTextSize - this.minTextSize) > threshold) {
             float size = (this.preferredTextSize + this.minTextSize) / 2;
             this.textPaint.setTextSize(size);
-            if (this.textPaint.measureText(text) >= targetWidth)
+            if (this.textPaint.measureText(text) >= targetWidth) {
                 this.preferredTextSize = size; // too big
-            else
+            } else {
                 this.minTextSize = size; // too small
+            }
         }
         // Use min size so that we undershoot rather than overshoot
         this.setTextSize(TypedValue.COMPLEX_UNIT_PX, this.minTextSize);
@@ -90,8 +90,9 @@ public class AutoScaleTextView extends TextView {
 
     @Override
     protected void onSizeChanged(int width, int height, int oldwidth, int oldheight) {
-        if (width != oldwidth)
+        if (width != oldwidth) {
             this.refitText(this.getText().toString(), width);
+        }
     }
 
 }

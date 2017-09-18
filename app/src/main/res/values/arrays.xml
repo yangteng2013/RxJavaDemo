@@ -47,5 +47,6 @@
         <item>ViewFlipper</item>
         <item>TOPLIST</item>
         <item>AUTOTEXT</item>
+        <item>POPUPWINDOW</item>
     </string-array>
 </resources>

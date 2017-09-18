@@ -1,18 +1,14 @@
 package com.noe.rxjava;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.TypedValue;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.noe.rxjava.util.ArouterUtils;
-import com.noe.rxjava.util.StringUtils;
 import com.noe.rxjava.view.AutoScaleTextView;
 
 import java.util.ArrayList;
@@ -39,11 +35,12 @@ public class AutoTextActivity extends AppCompatActivity {
     private void initData() {
         arrayList.add("房屋");
         arrayList.add("北京");
-        arrayList.add("出售房源由多到少");
+        arrayList.add("出售房源由多");
         arrayList.add("出租房源由多到少");
         arrayList.add("乌鲁木齐");
         arrayList.add("出售房源由多到少哈哈哈哈哈哈");
-        arrayList.add("五室");
+        arrayList.add("五室一厅啊");
+        arrayList.add("三室一厅一卫嗯");
         arrayList.add("别墅");
         arrayList.add("公寓");
         mGridView.setAdapter(new TextAdapter());
